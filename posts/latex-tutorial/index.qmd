@@ -1,5 +1,5 @@
 ---
-title: "Post With Code"
+title: "LaTeX Tutorial for UBC MDS Students"
 author: "Dominic Lam"
 date: "2025-01-17"
 categories: [LaTeX, cheatsheets, document preparation, Overleaf, tutorials]
