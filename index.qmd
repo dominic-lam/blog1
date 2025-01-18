@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "a place of mind"
 listing:
   contents: posts
   sort: "date desc"
