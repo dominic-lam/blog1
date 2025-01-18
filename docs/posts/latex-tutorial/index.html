@@ -387,7 +387,75 @@ x^2 &amp; \text{if } x &gt; 0 \\
 -x^2 &amp; \text{if } x \leq 0
 \end{cases}\]</span></li>
 </ul>
+</section>
+</section>
+<section id="using-under-bracket-and-over-bracket-in-latex" class="level2">
+<h2 class="anchored" data-anchor-id="using-under-bracket-and-over-bracket-in-latex">Using Under Bracket and Over Bracket in LaTeX</h2>
+<p>In LaTeX, you can use under brackets and over brackets to annotate or group parts of mathematical expressions. These are particularly useful in making your equations more readable and providing additional context.</p>
+<section id="over-bracket" class="level3">
+<h3 class="anchored" data-anchor-id="over-bracket">1. Over Bracket</h3>
+<p>The <code>\overbracket</code> command is used to place a bracket above an expression. You can also add annotations above the bracket using the optional argument.</p>
+<section id="syntax" class="level4">
+<h4 class="anchored" data-anchor-id="syntax">Syntax:</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\overbracket</span>{expression}^{annotation}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example:</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$overbracket{a + b + c}^{</span><span class="sc">\text</span>{Sum of terms}<span class="ss">}$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will produce:</p>
+<p><span class="math display">\[
+\overbracket{a + b + c}^{\text{Sum of terms}}
+\]</span></p>
+</section>
+</section>
+<section id="under-bracket" class="level3">
+<h3 class="anchored" data-anchor-id="under-bracket">2. Under Bracket</h3>
+<p>The <code>\underbracket</code> command is used to place a bracket below an expression. Similar to <code>\overbracket</code>, you can add annotations below the bracket using the optional argument.</p>
+<section id="syntax-1" class="level4">
+<h4 class="anchored" data-anchor-id="syntax-1">Syntax:</h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\underbracket</span>{expression}_{annotation}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-1">Example:</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span><span class="sc">\underbracket</span><span class="ss">{x + y + z}_{</span><span class="sc">\text</span>{Group of variables}<span class="ss">}$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will produce:</p>
+<p><span class="math display">\[
+\underbracket{x + y + z}_{\text{Group of variables}}
+\]</span></p>
+</section>
+</section>
+<section id="combining-over-and-under-brackets" class="level3">
+<h3 class="anchored" data-anchor-id="combining-over-and-under-brackets">3. Combining Over and Under Brackets</h3>
+<p>You can use both over and under brackets together to highlight different aspects of the same expression.</p>
+<section id="example-2" class="level4">
+<h4 class="anchored" data-anchor-id="example-2">Example:</h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span><span class="sc">\overbracket</span><span class="ss">{</span><span class="sc">\underbracket</span><span class="ss">{a + b}_</span><span class="sc">\text</span><span class="ss">{Lower group} + c}^{</span><span class="sc">\text</span>{Upper group}<span class="ss">}$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will produce:</p>
+<p><span class="math display">\[
+\overbracket{\underbracket{a + b}_\text{Lower group} + c}^{\text{Upper group}}
+\]</span></p>
+</section>
+</section>
+<section id="use-cases" class="level3">
+<h3 class="anchored" data-anchor-id="use-cases">4. Use Cases</h3>
+<ul>
+<li>Highlighting grouped terms in equations.</li>
+<li>Annotating specific parts of an expression for educational purposes.</li>
+<li>Structuring complex mathematical derivations.</li>
+</ul>
+</section>
+<section id="tips" class="level3">
+<h3 class="anchored" data-anchor-id="tips">5. Tips</h3>
+<ul>
+<li>Use <code>\text{}</code> for annotations to ensure proper formatting of text in math mode.</li>
+<li>Adjust the size of brackets if needed by using commands like <code>\big</code>, <code>\Big</code>, <code>\bigg</code>, or <code>\Bigg</code> before the bracket.</li>
+</ul>
+<section id="example-3" class="level4">
+<h4 class="anchored" data-anchor-id="example-3">Example:</h4>
+<div class="sourceCode" id="cb14"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ss">\[</span><span class="sc">\Bigg</span><span class="ss">(</span><span class="sc">\overbracket</span><span class="ss">{a + b}^{</span><span class="sc">\text</span>{Top annotation}<span class="ss">}</span><span class="sc">\Bigg</span><span class="ss">)\]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="math display">\[\Bigg(\overbracket{a + b}^{\text{Top annotation}}\Bigg)\]</span></p>
 <hr>
+</section>
 </section>
 </section>
 <section id="what-is-overleaf" class="level2">
@@ -415,13 +483,13 @@ x^2 &amp; \text{if } x &gt; 0 \\
 <section id="basic-structure-of-a-latex-file" class="level2">
 <h2 class="anchored" data-anchor-id="basic-structure-of-a-latex-file">Basic Structure of a LaTeX File</h2>
 <p>Below is the basic structure of a <code>.tex</code> file:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Title}</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Your content goes here.</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Title}</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>Your content goes here.</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="explanation-of-each-component" class="level3">
 <h3 class="anchored" data-anchor-id="explanation-of-each-component">Explanation of Each Component</h3>
 <ul>
@@ -448,74 +516,74 @@ x^2 &amp; \text{if } x &gt; 0 \\
 <section id="cheat-sheet-template" class="level2">
 <h2 class="anchored" data-anchor-id="cheat-sheet-template">Cheat Sheet Template</h2>
 <p>Below is a template for creating a cheatsheet in Overleaf, followed by explanations of its components:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[8pt]{<span class="ex">article</span>}</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[letterpaper, landscape, margin=0.1in]{<span class="ex">geometry</span>}</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amssymb</span>}</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">multicol</span>}</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">xcolor</span>}</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">listings</span>}  <span class="co">% For code blocks</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">titlesec</span>}  <span class="co">% Customize section titles</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Layout adjustments</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\parindent</span>}{0pt}  <span class="co">% No indentation</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\parskip</span>}{0pt}    <span class="co">% No space between paragraphs</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\columnsep</span>}{0.2in}  <span class="co">% Adjust margin between columns</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\columnseprule</span>}{0.4pt}  <span class="co">% Add vertical line between columns</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">% Customize section and subsection font size</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\titleformat</span>{<span class="kw">\section</span>}</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\normalfont\fontsize</span>{8}{8}<span class="fu">\bfseries</span>} <span class="co">% Section titles in 8pt bold</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\thesection</span>}{1em}{}</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\titleformat</span>{<span class="kw">\subsection</span>}</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\normalfont\fontsize</span>{7}{7}<span class="fu">\bfseries</span>} <span class="co">% Subsection titles in 7pt bold</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\thesubsection</span>}{1em}{}</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">\titlespacing*</span>{<span class="kw">\section</span>}</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  {0pt}{0.5ex}{0.5ex}  <span class="co">% Spacing around sections</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\titlespacing*</span>{<span class="kw">\subsection</span>}</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  {0pt}{0.3ex}{0.3ex}  <span class="co">% Spacing around subsections</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">% Code block styling</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">\lstset</span>{</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  backgroundcolor=<span class="fu">\color</span>{gray!20},  <span class="co">% Light grey background</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  basicstyle=<span class="fu">\ttfamily</span>,  <span class="co">% Monospace font</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  frame=single,  <span class="co">% Draw a frame around code blocks</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  breaklines=true,  <span class="co">% Allow line breaking</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  columns=fullflexible  <span class="co">% Align code nicely</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">multicols</span>}{6}  <span class="co">% 6 columns layout</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="fu">\scriptsize</span>  <span class="co">% Set small font size for compact content</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Course Title}</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="kw">\subsection*</span>{Important Section}</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">lstlisting</span>}</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="vs"># Example code block</span></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="vs">set.seed(551)</span></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="vs">rnbinom_output &lt;- rnbinom(n = 10, size = 5, prob = 0.6)</span></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="vs">def add(x, y):</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="vs">    return x + y</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">lstlisting</span>}</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Key Formula}</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="ss">\[</span></span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="ss">E = mc^2</span></span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="ss">\]</span></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Notes}</span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">multicols</span>}</span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[8pt]{<span class="ex">article</span>}</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[letterpaper, landscape, margin=0.1in]{<span class="ex">geometry</span>}</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amssymb</span>}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">multicol</span>}</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">xcolor</span>}</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">listings</span>}  <span class="co">% For code blocks</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">titlesec</span>}  <span class="co">% Customize section titles</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Layout adjustments</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\parindent</span>}{0pt}  <span class="co">% No indentation</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\parskip</span>}{0pt}    <span class="co">% No space between paragraphs</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\columnsep</span>}{0.2in}  <span class="co">% Adjust margin between columns</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\columnseprule</span>}{0.4pt}  <span class="co">% Add vertical line between columns</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">% Customize section and subsection font size</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\titleformat</span>{<span class="kw">\section</span>}</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\normalfont\fontsize</span>{8}{8}<span class="fu">\bfseries</span>} <span class="co">% Section titles in 8pt bold</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\thesection</span>}{1em}{}</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\titleformat</span>{<span class="kw">\subsection</span>}</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\normalfont\fontsize</span>{7}{7}<span class="fu">\bfseries</span>} <span class="co">% Subsection titles in 7pt bold</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\thesubsection</span>}{1em}{}</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="fu">\titlespacing*</span>{<span class="kw">\section</span>}</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  {0pt}{0.5ex}{0.5ex}  <span class="co">% Spacing around sections</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\titlespacing*</span>{<span class="kw">\subsection</span>}</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  {0pt}{0.3ex}{0.3ex}  <span class="co">% Spacing around subsections</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">% Code block styling</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="fu">\lstset</span>{</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  backgroundcolor=<span class="fu">\color</span>{gray!20},  <span class="co">% Light grey background</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  basicstyle=<span class="fu">\ttfamily</span>,  <span class="co">% Monospace font</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  frame=single,  <span class="co">% Draw a frame around code blocks</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  breaklines=true,  <span class="co">% Allow line breaking</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  columns=fullflexible  <span class="co">% Align code nicely</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">multicols</span>}{6}  <span class="co">% 6 columns layout</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="fu">\scriptsize</span>  <span class="co">% Set small font size for compact content</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Course Title}</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="kw">\subsection*</span>{Important Section}</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">lstlisting</span>}</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="vs"># Example code block</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="vs">set.seed(551)</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="vs">rnbinom_output &lt;- rnbinom(n = 10, size = 5, prob = 0.6)</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="vs">def add(x, y):</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="vs">    return x + y</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">lstlisting</span>}</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Key Formula}</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="ss">\[</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="ss">E = mc^2</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a><span class="ss">\]</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Notes}</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">multicols</span>}</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="key-components-of-the-cheatsheet-template" class="level3">
 <h3 class="anchored" data-anchor-id="key-components-of-the-cheatsheet-template">Key Components of the Cheatsheet Template</h3>
 <ul>
@@ -526,13 +594,14 @@ x^2 &amp; \text{if } x &gt; 0 \\
 <li><code>\section*{Course Title}</code><br>
 • Creates a section title without numbering. The * removes the automatic section numbering.<br>
 • Replace “Course Title” with the desired heading for your cheatsheet.<br>
-<code>\subsection*{subsection}</code> • Similar to \section*, but creates a smaller, unnumbered subsection title. • Useful for organizing content under a specific section. <code>\hrule % Horizontal Separator</code><br>
+<code>\subsection*{subsection}</code> • Similar to \section*, but creates a smaller, unnumbered subsection title.<br>
+• Useful for organizing content under a specific section. <code>\hrule % Horizontal Separator</code><br>
 • Inserts a horizontal line across the page.<br>
 • Often used for visually separating sections or blocks of content.</li>
 </ul>
-<p>Adding Expressions or Equations<br>
+<p><strong>Adding Expressions or Equations</strong><br>
 • To include LaTeX expressions or equations, wrap the code with:<br>
-<code>$$ ... $$</code> for display math.</p>
+<code>$$ ... $$</code> for display math, or wrap the code with <code>$ ... $</code> for inline math.</p>
 </section>
 <section id="understanding-content-layout-in-overleaf" class="level3">
 <h3 class="anchored" data-anchor-id="understanding-content-layout-in-overleaf">Understanding Content Layout in Overleaf</h3>
@@ -543,7 +612,9 @@ x^2 &amp; \text{if } x &gt; 0 \\
 <figcaption>Example of content layout with insufficient text, leaving empty vertical space in columns.</figcaption>
 </figure>
 </div>
-<p>In a cheatsheet, this behavior is intentional, as it ensures compact and organized presentation of information across multiple columns. To maximize the vertical utilization of the page: 1. Increase the amount of content within each column (e.g., adding more sections or equations). 2. Adjust the number of columns in the \begin{multicols}{n} command to fit the amount of content better (e.g., reduce n from 6 to 4 if there is less information).</p>
+<p>In a cheatsheet, this behavior is intentional, as it ensures compact and organized presentation of information across multiple columns. To maximize the vertical utilization of the page:<br>
+1. Increase the amount of content within each column (e.g., adding more sections or equations).<br>
+2. Adjust the number of columns in the \begin{multicols}{n} command to fit the amount of content better (e.g., reduce n from 6 to 4 if there is less information).</p>
 <p>As long as there is enough content, the page will be rendered normally, filling both horizontally and vertically as intended.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

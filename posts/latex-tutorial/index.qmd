@@ -196,6 +196,73 @@ Whether you're using Jupyter Notebook or RMarkdown, these methods ensure your eq
   -x^2 & \text{if } x \leq 0
   \end{cases}
 
+## Using Under Bracket and Over Bracket in LaTeX
+
+In LaTeX, you can use under brackets and over brackets to annotate or group parts of mathematical expressions. These are particularly useful in making your equations more readable and providing additional context.
+
+### 1. Over Bracket
+The `\overbracket` command is used to place a bracket above an expression. You can also add annotations above the bracket using the optional argument.
+
+#### Syntax:
+```latex
+\overbracket{expression}^{annotation}
+```
+
+#### Example:
+```latex
+$$overbracket{a + b + c}^{\text{Sum of terms}}$$
+```
+This will produce:
+
+$$
+\overbracket{a + b + c}^{\text{Sum of terms}}
+$$
+
+### 2. Under Bracket
+The `\underbracket` command is used to place a bracket below an expression. Similar to `\overbracket`, you can add annotations below the bracket using the optional argument.
+
+#### Syntax:
+```latex
+\underbracket{expression}_{annotation}
+```
+
+#### Example:
+```latex
+$$\underbracket{x + y + z}_{\text{Group of variables}}$$
+```
+This will produce:
+
+$$
+\underbracket{x + y + z}_{\text{Group of variables}}
+$$
+
+### 3. Combining Over and Under Brackets
+You can use both over and under brackets together to highlight different aspects of the same expression.
+
+#### Example:
+```latex
+$$\overbracket{\underbracket{a + b}_\text{Lower group} + c}^{\text{Upper group}}$$
+```
+This will produce:
+
+$$
+\overbracket{\underbracket{a + b}_\text{Lower group} + c}^{\text{Upper group}}
+$$
+
+### 4. Use Cases
+- Highlighting grouped terms in equations.
+- Annotating specific parts of an expression for educational purposes.
+- Structuring complex mathematical derivations.
+
+### 5. Tips
+- Use `\text{}` for annotations to ensure proper formatting of text in math mode.
+- Adjust the size of brackets if needed by using commands like `\big`, `\Big`, `\bigg`, or `\Bigg` before the bracket.
+
+#### Example:
+```latex
+\[\Bigg(\overbracket{a + b}^{\text{Top annotation}}\Bigg)\]
+```
+$$\Bigg(\overbracket{a + b}^{\text{Top annotation}}\Bigg)$$
 ---
 
 ## What is Overleaf?
@@ -325,15 +392,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 	•	Creates a section title without numbering. The * removes the automatic section numbering.  
 	•	Replace "Course Title" with the desired heading for your cheatsheet.  
 `\subsection*{subsection}` 
-	•	Similar to \section*, but creates a smaller, unnumbered subsection title.
+	•	Similar to \section*, but creates a smaller, unnumbered subsection title.  
 	•	Useful for organizing content under a specific section.
 `\hrule % Horizontal Separator`  
 	•	Inserts a horizontal line across the page.  
 	•	Often used for visually separating sections or blocks of content.  
 
-Adding Expressions or Equations  
+**Adding Expressions or Equations**  
 	•	To include LaTeX expressions or equations, wrap the code with:  
-`$$ ... $$` for display math.  
+`$$ ... $$` for display math, or  wrap the code with `$ ... $` for inline math.  
 
 ### Understanding Content Layout in Overleaf
 
@@ -341,8 +408,8 @@ When using the multicols environment with a landscape document orientation, the 
 
 ![Example of content layout with insufficient text, leaving empty vertical space in columns.](insufficient_content_layout.png){fig-align="center" fig-caption=""}
 
-In a cheatsheet, this behavior is intentional, as it ensures compact and organized presentation of information across multiple columns. To maximize the vertical utilization of the page:
-	1.	Increase the amount of content within each column (e.g., adding more sections or equations).
+In a cheatsheet, this behavior is intentional, as it ensures compact and organized presentation of information across multiple columns. To maximize the vertical utilization of the page:  
+	1.	Increase the amount of content within each column (e.g., adding more sections or equations).  
 	2.	Adjust the number of columns in the \begin{multicols}{n} command to fit the amount of content better (e.g., reduce n from 6 to 4 if there is less information).
 
 As long as there is enough content, the page will be rendered normally, filling both horizontally and vertically as intended.
