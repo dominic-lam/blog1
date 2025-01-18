@@ -1,0 +1,12 @@
+{
+  "hash": "c9275e687199e92f31e3f3189887add2",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Welcome To My Blog\nauthor: Tristan O'Malley\ndate: '2025-01-14'\ncategories:\n  - news\njupyter:\n  jupytext:\n    text_representation:\n      extension: .qmd\n      format_name: quarto\n      format_version: '1.0'\n      jupytext_version: 1.16.4\n  kernelspec:\n    display_name: Python 3 (ipykernel)\n    language: python\n    name: python3\n---\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

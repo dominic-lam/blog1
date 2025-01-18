@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -69,6 +103,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -156,9 +219,330 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is a post with executable code.</p>
+<p><strong>LaTeX Tutorial for UBC MDS Students</strong></p>
+<hr>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>From time to time, students in the MDS program need to write math equations for their labs and cheatsheets. These tasks require precision and clarity, which can be achieved effectively using LaTeX. While Jupyter notebooks and RMarkdown are common tools for lab work, knowing how to incorporate LaTeX into these platforms ensures that equations and formulas are presented professionally. Additionally, creating a polished cheatsheet for exams or assignments often involves using LaTeX in Overleaf, a cloud-based LaTeX editor.</p>
+<p>LaTeX is a powerful typesetting system designed for technical and scientific documents. It provides a consistent way to format complex mathematical expressions and structures that are difficult to achieve in standard word processors. Learning the basics of LaTeX not only enhances your ability to create high-quality documents but also prepares you to handle various formatting challenges in your academic and professional career.</p>
+<p>This tutorial is structured to first introduce the basics of LaTeX, covering essential concepts such as document structure, writing math equations, and formatting. Following that, it will guide you on using Overleaf, a user-friendly platform for creating and collaborating on LaTeX documents, with an example cheatsheet template to get you started.</p>
+<section id="learning-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h3>
+<p>By the end of this tutorial, you will be able to:<br>
+1. Understand the basic structure and key components of a LaTeX document.<br>
+2. Write and render mathematical equations and expressions in Jupyter Notebook and RMarkdown.<br>
+3. Create structured, multi-column cheatsheets using Overleaf.<br>
+4. Apply formatting techniques to improve the readability and organization of LaTeX documents.<br>
+5. Utilize LaTeX packages such as amsmath and multicol to enhance functionality and layout.</p>
+<hr>
+</section>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>This tutorial assumes that readers have followed the MDS stack software installation instructions available <a href="https://ubc-mds.github.io/resources_pages/installation_instructions/">here</a> to install JupyterLab, R, and LaTeX. Additionally, it assumes that readers have basic knowledge of using JupyterLab and R. These tools and skills are essential for completing the tasks outlined in this guide.</p>
+<p>Additionally, for each new Conda environment, to ensure that the webpdf export of Jupyter notebooks works successfully, you must run the following commands <strong>before activating the environment</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"nbconvert[webpdf]"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">playwright</span> install chromium</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These steps will ensure that your environment is properly configured for exporting Jupyter notebooks as web-ready PDFs.</p>
+<hr>
+</section>
+<section id="writing-math-equations-in-jupyter-notebook-and-rmarkdown" class="level2">
+<h2 class="anchored" data-anchor-id="writing-math-equations-in-jupyter-notebook-and-rmarkdown">Writing Math Equations in Jupyter Notebook and RMarkdown</h2>
+<p>Jupyter Notebook and RMarkdown both support LaTeX for rendering math equations. In Jupyter Notebook, the LaTeX code works directly in Markdown cells, while in RMarkdown, it can be included in text sections or inline with code chunks.</p>
+<p>Here are the common ways to include equations:</p>
+<ul>
+<li><p><strong>Inline Math</strong>: Use single dollar signs <code>$ ... $</code> for inline equations. Example: <code>The equation $y = mx + c$ represents a straight line.</code></p></li>
+<li><p><strong>Display Math</strong>: Use double dollar signs <code>$$ ... $$</code> or <code>\[ ... \]</code> for display equations. Example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ss">E = mc^2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendered: <span class="math display">\[
+E = mc^2
+\]</span></p></li>
+</ul>
+<p>Whether you’re using Jupyter Notebook or RMarkdown, these methods ensure your equations are rendered cleanly and professionally.</p>
+<hr>
+</section>
+<section id="common-latex-math-commands-and-examples" class="level2">
+<h2 class="anchored" data-anchor-id="common-latex-math-commands-and-examples">Common LaTeX Math Commands and Examples</h2>
+<section id="math-mode" class="level3">
+<h3 class="anchored" data-anchor-id="math-mode">Math Mode</h3>
+<ul>
+<li><p><strong>Subscript and Superscript</strong>:</p>
+<ul>
+<li>Subscript: <code>$a_n$</code> Rendered: <span class="math inline">\(a_n\)</span></li>
+<li>Superscript: <code>$x^2$</code> Rendered: <span class="math inline">\(x^2\)</span></li>
+<li>For multi-character exponents or indices, use curly brackets: <code>$x^{10}$, $a_{ijk}$</code>
+<ul>
+<li>Rendered: <span class="math inline">\(x^{10}\)</span>, <span class="math inline">\(a_{ijk}\)</span></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Equation with Number</strong>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">equation</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ss">x = </span><span class="sc">\frac</span><span class="ss">{-b </span><span class="sc">\pm</span><span class="ss"> </span><span class="sc">\sqrt</span><span class="ss">{b^2 - 4ac}}{2a}</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">equation</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendered: <span class="math display">\[\begin{equation}
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}\]</span></p></li>
+<li><p><strong>Align Equations</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">align</span>}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ss">a &amp;= b + c </span><span class="sc">\\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ss">d &amp;= e + f</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">align</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendered: <span class="math display">\[\begin{align}
+a &amp;= b + c \\
+d &amp;= e + f
+\end{align}\]</span></p></li>
+</ul>
+</section>
+<section id="matrices" class="level3">
+<h3 class="anchored" data-anchor-id="matrices">Matrices</h3>
+<ul>
+<li><p><strong>Matrix in Brackets</strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">bmatrix</span>}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ss">a &amp; b </span><span class="sc">\\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ss">c &amp; d</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">bmatrix</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendered:</p>
+<span class="math display">\[\begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}\]</span></li>
+<li><p><strong>Matrix in Parentheses</strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">pmatrix</span>}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ss">a &amp; b </span><span class="sc">\\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ss">c &amp; d</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">pmatrix</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendered:</p>
+<span class="math display">\[\begin{pmatrix}
+a &amp; b \\
+c &amp; d
+\end{pmatrix}\]</span></li>
+<li><p><strong>Augmented Matrix</strong>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">array</span>}{cc|c}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>1 &amp; 2 &amp; 3 <span class="fu">\\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>4 &amp; 5 &amp; 6</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">array</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendered:</p>
+<span class="math display">\[\begin{array}{cc|c}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{array}\]</span></li>
+</ul>
+</section>
+<section id="fractions-exponents-and-roots" class="level3">
+<h3 class="anchored" data-anchor-id="fractions-exponents-and-roots">Fractions, Exponents, and Roots</h3>
+<ul>
+<li><strong>Fractions</strong>: <code>$\frac{a}{b}$</code> Rendered: <span class="math inline">\(\frac{a}{b}\)</span></li>
+<li><strong>Exponents and Subscripts</strong>: <code>$x^2, a_n$</code> Rendered: <span class="math inline">\(x^2, a_n\)</span></li>
+<li><strong>Square Root</strong>: <code>$\sqrt{a}$</code> Rendered: <span class="math inline">\(\sqrt{a}\)</span></li>
+<li><strong>nth Root</strong>: <code>$\sqrt[n]{a}$</code> Rendered: <span class="math inline">\(\sqrt[n]{a}\)</span></li>
+</ul>
+</section>
+<section id="summation-products-limits-and-integrals" class="level3">
+<h3 class="anchored" data-anchor-id="summation-products-limits-and-integrals">Summation, Products, Limits, and Integrals</h3>
+<ul>
+<li><strong>Summation</strong>: <code>$\sum_{n=1}^{\infty} \frac{1}{n^2}$</code> Rendered: <span class="math inline">\(\sum_{n=1}^{\infty} \frac{1}{n^2}\)</span></li>
+<li><strong>Product</strong>: <code>$\prod_{i=1}^{n} i$</code> Rendered: <span class="math inline">\(\prod_{i=1}^{n} i\)</span></li>
+<li><strong>Limits</strong>: <code>$\lim_{x \to \infty} f(x)$</code> Rendered: <span class="math inline">\(\lim_{x \to \infty} f(x)\)</span></li>
+<li><strong>Integral</strong>: <code>$\int_{a}^{b} x^2 \, dx$</code> Rendered: <span class="math inline">\(\int_{a}^{b} x^2 \, dx\)</span></li>
+</ul>
+</section>
+<section id="greek-letters" class="level3">
+<h3 class="anchored" data-anchor-id="greek-letters">Greek Letters</h3>
+<ul>
+<li><strong>Lowercase</strong>: <code>\alpha, \beta, \gamma, \delta, \epsilon</code> Rendered: <span class="math inline">\(\alpha, \beta, \gamma, \delta, \epsilon\)</span></li>
+<li><strong>Uppercase</strong>: <code>\Gamma, \Delta, \Theta, \Lambda, \Pi</code> Rendered: <span class="math inline">\(\Gamma, \Delta, \Theta, \Lambda, \Pi\)</span></li>
+</ul>
+</section>
+<section id="common-functions" class="level3">
+<h3 class="anchored" data-anchor-id="common-functions">Common Functions</h3>
+<ul>
+<li><strong>Trigonometric</strong>: <code>$\sin(x), \cos(x), \tan(x)$</code> Rendered: <span class="math inline">\(\sin(x), \cos(x), \tan(x)\)</span></li>
+<li><strong>Logarithmic</strong>: <code>$\log(x), \ln(x)$</code> Rendered: <span class="math inline">\(\log(x), \ln(x)\)</span></li>
+<li><strong>Exponential</strong>: <code>$e^x$</code> Rendered: <span class="math inline">\(e^x\)</span></li>
+</ul>
+</section>
+<section id="operators-and-symbols" class="level3">
+<h3 class="anchored" data-anchor-id="operators-and-symbols">Operators and Symbols</h3>
+<ul>
+<li><strong>Arithmetic</strong>: <code>$a \pm b, a \cdot b, a \div b$</code> Rendered: <span class="math inline">\(a \pm b, a \cdot b, a \div b\)</span></li>
+<li><strong>Logical</strong>: <code>$\land, \lor, \neg$</code> Rendered: <span class="math inline">\(\land, \lor, \neg\)</span></li>
+<li><strong>Derivatives</strong>: <code>$\frac{dy}{dx}, \frac{\partial f}{\partial x}$</code> Rendered: <span class="math inline">\(\frac{dy}{dx}, \frac{\partial f}{\partial x}\)</span></li>
+</ul>
+</section>
+<section id="cases-and-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="cases-and-conditions">Cases and Conditions</h3>
+<ul>
+<li><p><strong>Cases</strong>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">cases</span>}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ss">x^2 &amp; </span><span class="sc">\text</span>{if }<span class="ss"> x &gt; 0 </span><span class="sc">\\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ss">-x^2 &amp; </span><span class="sc">\text</span>{if }<span class="ss"> x </span><span class="sc">\leq</span><span class="ss"> 0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">cases</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rendered:</p>
+<span class="math display">\[\begin{cases}
+x^2 &amp; \text{if } x &gt; 0 \\
+-x^2 &amp; \text{if } x \leq 0
+\end{cases}\]</span></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="what-is-overleaf" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-overleaf">What is Overleaf?</h2>
+<p>Overleaf is an online LaTeX editor that simplifies the process of creating, collaborating, and sharing LaTeX documents. It is particularly useful for creating well-structured documents such as cheatsheets, research papers, and presentations. With Overleaf, users can:<br>
+- Access their projects from anywhere with an internet connection.<br>
+- Collaborate in real-time with peers.<br>
+- Use pre-built templates for faster setup.</p>
+<p>Cheatsheets created in Overleaf can be customized to include multiple columns, formatted equations, and compact layouts for efficient information presentation.</p>
+</section>
+<section id="getting-started-with-overleaf" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started-with-overleaf">Getting Started with Overleaf</h2>
+<ol type="1">
+<li><strong>Create an Account</strong>:
+<ul>
+<li>Visit <a href="https://www.overleaf.com/">Overleaf</a> and sign up for a free account.</li>
+</ul></li>
+<li><strong>Create a New Project</strong>:
+<ul>
+<li>After logging in, click “New Project” and select “Blank Project.”</li>
+<li>After creating a blank project, a <code>main.tex</code> file is created automatically. You can type LaTeX code, then press <code>Ctrl + S</code> (Windows) or <code>Cmd + S</code> (Mac) to trigger recompilation. The preview will be shown on the left.</li>
+</ul></li>
+</ol>
+</section>
+<section id="basic-structure-of-a-latex-file" class="level2">
+<h2 class="anchored" data-anchor-id="basic-structure-of-a-latex-file">Basic Structure of a LaTeX File</h2>
+<p>Below is the basic structure of a <code>.tex</code> file:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Title}</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Your content goes here.</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="explanation-of-each-component" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-of-each-component">Explanation of Each Component</h3>
+<ul>
+<li><code>\documentclass{article}</code><br>
+• Specifies the type of document. Common options include:<br>
+• article: For articles, reports, or smaller documents.<br>
+• report: For longer documents like theses.<br>
+• book: For books or multi-chapter works.<br>
+</li>
+<li><code>\usepackage{amsmath}</code><br>
+• Imports additional functionality for handling mathematical expressions. The amsmath package provides features for advanced math typesetting, such as aligning equations and using matrices.<br>
+</li>
+<li><code>\begin{document}</code> and <code>\end{document}</code><br>
+• Encloses the main content of your document. Any content outside these commands will not be included in the output.<br>
+</li>
+<li><code>\section*{Title}</code><br>
+• Defines a section in your document. The asterisk (*) removes the numbering for the section, making it suitable for standalone titles.<br>
+</li>
+<li>Your content goes here.<br>
+• Placeholder text. Replace this with the actual content or body of your document.</li>
+</ul>
+</section>
+</section>
+<section id="cheat-sheet-template" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheet-template">Cheat Sheet Template</h2>
+<p>Below is a template for creating a cheatsheet in Overleaf, followed by explanations of its components:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[8pt]{<span class="ex">article</span>}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[letterpaper, landscape, margin=0.1in]{<span class="ex">geometry</span>}</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amssymb</span>}</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">multicol</span>}</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">xcolor</span>}</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">listings</span>}  <span class="co">% For code blocks</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">titlesec</span>}  <span class="co">% Customize section titles</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">% Layout adjustments</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\parindent</span>}{0pt}  <span class="co">% No indentation</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\parskip</span>}{0pt}    <span class="co">% No space between paragraphs</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\columnsep</span>}{0.2in}  <span class="co">% Adjust margin between columns</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\setlength</span>{<span class="fu">\columnseprule</span>}{0.4pt}  <span class="co">% Add vertical line between columns</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">% Customize section and subsection font size</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\titleformat</span>{<span class="kw">\section</span>}</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\normalfont\fontsize</span>{8}{8}<span class="fu">\bfseries</span>} <span class="co">% Section titles in 8pt bold</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\thesection</span>}{1em}{}</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\titleformat</span>{<span class="kw">\subsection</span>}</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\normalfont\fontsize</span>{7}{7}<span class="fu">\bfseries</span>} <span class="co">% Subsection titles in 7pt bold</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\thesubsection</span>}{1em}{}</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">\titlespacing*</span>{<span class="kw">\section</span>}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  {0pt}{0.5ex}{0.5ex}  <span class="co">% Spacing around sections</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\titlespacing*</span>{<span class="kw">\subsection</span>}</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  {0pt}{0.3ex}{0.3ex}  <span class="co">% Spacing around subsections</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">% Code block styling</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">\lstset</span>{</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  backgroundcolor=<span class="fu">\color</span>{gray!20},  <span class="co">% Light grey background</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  basicstyle=<span class="fu">\ttfamily</span>,  <span class="co">% Monospace font</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  frame=single,  <span class="co">% Draw a frame around code blocks</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  breaklines=true,  <span class="co">% Allow line breaking</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  columns=fullflexible  <span class="co">% Align code nicely</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">multicols</span>}{6}  <span class="co">% 6 columns layout</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="fu">\scriptsize</span>  <span class="co">% Set small font size for compact content</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Course Title}</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="kw">\subsection*</span>{Important Section}</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">lstlisting</span>}</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="vs"># Example code block</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="vs">set.seed(551)</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="vs">rnbinom_output &lt;- rnbinom(n = 10, size = 5, prob = 0.6)</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="vs">def add(x, y):</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="vs">    return x + y</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">lstlisting</span>}</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Key Formula}</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="ss">\[</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="ss">E = mc^2</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="ss">\]</span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="kw">\section*</span>{Notes}</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="fu">\hrule</span>  <span class="co">% Horizontal separator</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">multicols</span>}</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="key-components-of-the-cheatsheet-template" class="level3">
+<h3 class="anchored" data-anchor-id="key-components-of-the-cheatsheet-template">Key Components of the Cheatsheet Template</h3>
+<ul>
+<li><code>\begin{multicols}{6}</code> % n columns<br>
+• Controls the number of columns in the document.<br>
+• The {6} specifies that the content will be divided into six columns. You can change this number to adjust the layout (e.g., {3} for three columns).<br>
+</li>
+<li><code>\section*{Course Title}</code><br>
+• Creates a section title without numbering. The * removes the automatic section numbering.<br>
+• Replace “Course Title” with the desired heading for your cheatsheet.<br>
+<code>\subsection*{subsection}</code> • Similar to \section*, but creates a smaller, unnumbered subsection title. • Useful for organizing content under a specific section. <code>\hrule % Horizontal Separator</code><br>
+• Inserts a horizontal line across the page.<br>
+• Often used for visually separating sections or blocks of content.</li>
+</ul>
+<p>Adding Expressions or Equations<br>
+• To include LaTeX expressions or equations, wrap the code with:<br>
+<code>$$ ... $$</code> for display math.</p>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This tutorial has provided an introduction to LaTeX and its applications for creating math-intensive documents, including cheatsheets. By exploring the basic structure of a .tex file, learning to write and render mathematical equations, and working with Overleaf for creating structured, multi-column documents, you now have the foundational skills to effectively use LaTeX for academic and professional purposes.</p>
+<p>LaTeX is a powerful tool, and while it may seem complex at first, practice and experimentation will enhance your proficiency. Whether you’re crafting a detailed report, preparing a concise cheatsheet, or presenting mathematical concepts, LaTeX ensures your documents are both professional and precise.</p>
+<p>For further learning, explore additional resources such as Overleaf’s documentation, the LaTeX Wikibook, and community forums. Remember, the key to mastering LaTeX lies in consistent use and the willingness to learn from trial and error.</p>
+<p>Happy LaTeXing!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

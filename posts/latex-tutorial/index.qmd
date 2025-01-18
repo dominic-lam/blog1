@@ -1,0 +1,347 @@
+---
+title: "Post With Code"
+author: "Dominic Lam"
+date: "2025-01-17"
+categories: [LaTeX, cheatsheets, document preparation, Overleaf, tutorials]
+image: "image.png"
+---
+
+**LaTeX Tutorial for UBC MDS Students**
+
+---
+
+## Introduction
+
+From time to time, students in the MDS program need to write math equations for their labs and cheatsheets. These tasks require precision and clarity, which can be achieved effectively using LaTeX. While Jupyter notebooks and RMarkdown are common tools for lab work, knowing how to incorporate LaTeX into these platforms ensures that equations and formulas are presented professionally. Additionally, creating a polished cheatsheet for exams or assignments often involves using LaTeX in Overleaf, a cloud-based LaTeX editor.
+
+LaTeX is a powerful typesetting system designed for technical and scientific documents. It provides a consistent way to format complex mathematical expressions and structures that are difficult to achieve in standard word processors. Learning the basics of LaTeX not only enhances your ability to create high-quality documents but also prepares you to handle various formatting challenges in your academic and professional career.
+
+This tutorial is structured to first introduce the basics of LaTeX, covering essential concepts such as document structure, writing math equations, and formatting. Following that, it will guide you on using Overleaf, a user-friendly platform for creating and collaborating on LaTeX documents, with an example cheatsheet template to get you started.
+
+### Learning Outcomes
+
+By the end of this tutorial, you will be able to:  
+	1.	Understand the basic structure and key components of a LaTeX document.  
+	2.	Write and render mathematical equations and expressions in Jupyter Notebook and RMarkdown.  
+	3.	Create structured, multi-column cheatsheets using Overleaf.  
+	4.	Apply formatting techniques to improve the readability and organization of LaTeX documents.  
+	5.	Utilize LaTeX packages such as amsmath and multicol to enhance functionality and layout.
+
+---
+
+## Prerequisites
+
+This tutorial assumes that readers have followed the MDS stack software installation instructions available [here](https://ubc-mds.github.io/resources_pages/installation_instructions/) to install JupyterLab, R, and LaTeX. Additionally, it assumes that readers have basic knowledge of using JupyterLab and R. These tools and skills are essential for completing the tasks outlined in this guide.
+
+Additionally, for each new Conda environment, to ensure that the webpdf export of Jupyter notebooks works successfully, you must run the following commands **before activating the environment**:
+
+```bash
+pip install "nbconvert[webpdf]"
+playwright install chromium
+```
+
+These steps will ensure that your environment is properly configured for exporting Jupyter notebooks as web-ready PDFs.
+
+---
+
+## Writing Math Equations in Jupyter Notebook and RMarkdown
+
+Jupyter Notebook and RMarkdown both support LaTeX for rendering math equations. In Jupyter Notebook, the LaTeX code works directly in Markdown cells, while in RMarkdown, it can be included in text sections or inline with code chunks.
+
+Here are the common ways to include equations:
+
+- **Inline Math**: Use single dollar signs `$ ... $` for inline equations.
+  Example: `The equation $y = mx + c$ represents a straight line.`
+
+- **Display Math**: Use double dollar signs `$$ ... $$` or `\[ ... \]` for display equations.
+  Example:
+  ```latex
+  $$
+  E = mc^2
+  $$
+  ```
+  Rendered: 
+  $$
+  E = mc^2
+  $$
+
+
+Whether you're using Jupyter Notebook or RMarkdown, these methods ensure your equations are rendered cleanly and professionally.
+
+---
+
+## Common LaTeX Math Commands and Examples
+
+### Math Mode
+- **Subscript and Superscript**:
+  - Subscript: `$a_n$` Rendered: $a_n$
+  - Superscript: `$x^2$` Rendered: $x^2$
+  - For multi-character exponents or indices, use curly brackets: `$x^{10}$, $a_{ijk}$`   
+    - Rendered: $x^{10}$, $a_{ijk}$
+
+- **Equation with Number**:
+  ```latex
+  \begin{equation}
+  x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+  \end{equation}
+  ```
+  Rendered:
+  \begin{equation}
+  x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+  \end{equation}
+- **Align Equations**:
+  ```latex
+  \begin{align}
+  a &= b + c \\
+  d &= e + f
+  \end{align}
+  ```
+  Rendered:
+  \begin{align}
+  a &= b + c \\
+  d &= e + f
+  \end{align}
+
+### Matrices
+- **Matrix in Brackets**:
+  ```latex
+  \begin{bmatrix}
+  a & b \\
+  c & d
+  \end{bmatrix}
+  ```
+  Rendered:
+  \begin{bmatrix}
+  a & b \\
+  c & d
+  \end{bmatrix}
+- **Matrix in Parentheses**:
+  ```latex
+  \begin{pmatrix}
+  a & b \\
+  c & d
+  \end{pmatrix}
+  ```
+  Rendered:
+  \begin{pmatrix}
+  a & b \\
+  c & d
+  \end{pmatrix}
+- **Augmented Matrix**:
+  ```latex
+  \begin{array}{cc|c}
+  1 & 2 & 3 \\
+  4 & 5 & 6
+  \end{array}
+  ```
+  Rendered:
+  \begin{array}{cc|c}
+  1 & 2 & 3 \\
+  4 & 5 & 6
+  \end{array}
+
+### Fractions, Exponents, and Roots
+- **Fractions**: `$\frac{a}{b}$`
+  Rendered: $\frac{a}{b}$
+- **Exponents and Subscripts**: `$x^2, a_n$`
+  Rendered: $x^2, a_n$
+- **Square Root**: `$\sqrt{a}$`
+  Rendered: $\sqrt{a}$
+- **nth Root**: `$\sqrt[n]{a}$`
+  Rendered: $\sqrt[n]{a}$
+
+### Summation, Products, Limits, and Integrals
+- **Summation**: `$\sum_{n=1}^{\infty} \frac{1}{n^2}$`
+  Rendered: $\sum_{n=1}^{\infty} \frac{1}{n^2}$
+- **Product**: `$\prod_{i=1}^{n} i$`
+  Rendered: $\prod_{i=1}^{n} i$
+- **Limits**: `$\lim_{x \to \infty} f(x)$`
+  Rendered: $\lim_{x \to \infty} f(x)$
+- **Integral**: `$\int_{a}^{b} x^2 \, dx$`
+  Rendered: $\int_{a}^{b} x^2 \, dx$
+
+### Greek Letters
+- **Lowercase**: `\alpha, \beta, \gamma, \delta, \epsilon`
+  Rendered: $\alpha, \beta, \gamma, \delta, \epsilon$
+- **Uppercase**: `\Gamma, \Delta, \Theta, \Lambda, \Pi`
+  Rendered: $\Gamma, \Delta, \Theta, \Lambda, \Pi$
+
+### Common Functions
+- **Trigonometric**: `$\sin(x), \cos(x), \tan(x)$`
+  Rendered: $\sin(x), \cos(x), \tan(x)$
+- **Logarithmic**: `$\log(x), \ln(x)$`
+  Rendered: $\log(x), \ln(x)$
+- **Exponential**: `$e^x$`
+  Rendered: $e^x$
+
+### Operators and Symbols
+- **Arithmetic**: `$a \pm b, a \cdot b, a \div b$`
+  Rendered: $a \pm b, a \cdot b, a \div b$
+- **Logical**: `$\land, \lor, \neg$`
+  Rendered: $\land, \lor, \neg$
+- **Derivatives**: `$\frac{dy}{dx}, \frac{\partial f}{\partial x}$`
+  Rendered: $\frac{dy}{dx}, \frac{\partial f}{\partial x}$
+
+### Cases and Conditions
+- **Cases**:
+  ```latex
+  \begin{cases}
+  x^2 & \text{if } x > 0 \\
+  -x^2 & \text{if } x \leq 0
+  \end{cases}
+  ```
+  Rendered:
+  \begin{cases}
+  x^2 & \text{if } x > 0 \\
+  -x^2 & \text{if } x \leq 0
+  \end{cases}
+
+---
+
+## What is Overleaf?
+
+Overleaf is an online LaTeX editor that simplifies the process of creating, collaborating, and sharing LaTeX documents. It is particularly useful for creating well-structured documents such as cheatsheets, research papers, and presentations. With Overleaf, users can:  
+- Access their projects from anywhere with an internet connection.  
+- Collaborate in real-time with peers.  
+- Use pre-built templates for faster setup.  
+
+Cheatsheets created in Overleaf can be customized to include multiple columns, formatted equations, and compact layouts for efficient information presentation.
+
+## Getting Started with Overleaf
+
+1. **Create an Account**:
+   - Visit [Overleaf](https://www.overleaf.com/) and sign up for a free account.
+2. **Create a New Project**:
+   - After logging in, click "New Project" and select "Blank Project."
+   - After creating a blank project, a `main.tex` file is created automatically. You can type LaTeX code, then press `Ctrl + S` (Windows) or `Cmd + S` (Mac) to trigger recompilation. The preview will be shown on the left.
+
+## Basic Structure of a LaTeX File
+
+Below is the basic structure of a `.tex` file:
+```latex
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+\section*{Title}
+Your content goes here.
+\end{document}
+```
+### Explanation of Each Component
+- `\documentclass{article}`  
+	•	Specifies the type of document. Common options include:  
+	•	article: For articles, reports, or smaller documents.  
+	•	report: For longer documents like theses.  
+	•	book: For books or multi-chapter works.  
+- `\usepackage{amsmath}`  
+	•	Imports additional functionality for handling mathematical expressions. The amsmath package provides features for advanced math typesetting, such as aligning equations and using matrices.  
+- `\begin{document}` and `\end{document}`  
+	•	Encloses the main content of your document. Any content outside these commands will not be included in the output.  
+- `\section*{Title}`  
+	•	Defines a section in your document. The asterisk (*) removes the numbering for the section, making it suitable for standalone titles.  
+- Your content goes here.  
+	•	Placeholder text. Replace this with the actual content or body of your document.  
+
+## Cheat Sheet Template
+
+Below is a template for creating a cheatsheet in Overleaf, followed by explanations of its components:
+
+```latex
+\documentclass[8pt]{article}
+\usepackage[letterpaper, landscape, margin=0.1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{listings}  % For code blocks
+\usepackage{titlesec}  % Customize section titles
+
+% Layout adjustments
+\setlength{\parindent}{0pt}  % No indentation
+\setlength{\parskip}{0pt}    % No space between paragraphs
+\setlength{\columnsep}{0.2in}  % Adjust margin between columns
+\setlength{\columnseprule}{0.4pt}  % Add vertical line between columns
+
+% Customize section and subsection font size
+\titleformat{\section}
+  {\normalfont\fontsize{8}{8}\bfseries} % Section titles in 8pt bold
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\fontsize{7}{7}\bfseries} % Subsection titles in 7pt bold
+  {\thesubsection}{1em}{}
+\titlespacing*{\section}
+  {0pt}{0.5ex}{0.5ex}  % Spacing around sections
+\titlespacing*{\subsection}
+  {0pt}{0.3ex}{0.3ex}  % Spacing around subsections
+
+% Code block styling
+\lstset{
+  backgroundcolor=\color{gray!20},  % Light grey background
+  basicstyle=\ttfamily,  % Monospace font
+  frame=single,  % Draw a frame around code blocks
+  breaklines=true,  % Allow line breaking
+  columns=fullflexible  % Align code nicely
+}
+
+\begin{document}
+
+\begin{multicols}{6}  % 6 columns layout
+
+\scriptsize  % Set small font size for compact content
+
+\section*{Course Title}
+\subsection*{Important Section}
+\hrule  % Horizontal separator
+
+\begin{lstlisting}
+# Example code block
+set.seed(551)
+rnbinom_output <- rnbinom(n = 10, size = 5, prob = 0.6)
+
+def add(x, y):
+    return x + y
+\end{lstlisting}
+
+\section*{Key Formula}
+\hrule  % Horizontal separator
+\[
+E = mc^2
+\]
+
+\section*{Notes}
+\hrule  % Horizontal separator
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+\end{multicols}
+
+\end{document}
+```
+
+### Key Components of the Cheatsheet Template
+- `\begin{multicols}{6}`  % n columns  
+	•	Controls the number of columns in the document.  
+	•	The {6} specifies that the content will be divided into six columns. You can change this number to adjust the layout (e.g., {3} for three columns).  
+- `\section*{Course Title}`  
+	•	Creates a section title without numbering. The * removes the automatic section numbering.  
+	•	Replace "Course Title" with the desired heading for your cheatsheet.  
+`\subsection*{subsection}` 
+	•	Similar to \section*, but creates a smaller, unnumbered subsection title.
+	•	Useful for organizing content under a specific section.
+`\hrule % Horizontal Separator`  
+	•	Inserts a horizontal line across the page.  
+	•	Often used for visually separating sections or blocks of content.  
+
+Adding Expressions or Equations  
+	•	To include LaTeX expressions or equations, wrap the code with:  
+`$$ ... $$` for display math.  
+
+---
+## Conclusion
+
+This tutorial has provided an introduction to LaTeX and its applications for creating math-intensive documents, including cheatsheets. By exploring the basic structure of a .tex file, learning to write and render mathematical equations, and working with Overleaf for creating structured, multi-column documents, you now have the foundational skills to effectively use LaTeX for academic and professional purposes.
+
+LaTeX is a powerful tool, and while it may seem complex at first, practice and experimentation will enhance your proficiency. Whether you’re crafting a detailed report, preparing a concise cheatsheet, or presenting mathematical concepts, LaTeX ensures your documents are both professional and precise.
+
+For further learning, explore additional resources such as Overleaf’s documentation, the LaTeX Wikibook, and community forums. Remember, the key to mastering LaTeX lies in consistent use and the willingness to learn from trial and error.
+
+Happy LaTeXing!
