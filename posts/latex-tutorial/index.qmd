@@ -335,13 +335,27 @@ Adding Expressions or Equations
 	•	To include LaTeX expressions or equations, wrap the code with:  
 `$$ ... $$` for display math.  
 
+### Understanding Content Layout in Overleaf
+
+When using the multicols environment with a landscape document orientation, the content is distributed across columns horizontally. This means the text fills the columns from top to bottom, moving horizontally across the page to the next column once one is filled. If the content is insufficient to fill all the columns, the remaining space will appear empty vertically within each column.
+
+![Example of content layout with insufficient text, leaving empty vertical space in columns.](insufficient_content_layout.png){fig-align="center" fig-caption=""}
+
+In a cheatsheet, this behavior is intentional, as it ensures compact and organized presentation of information across multiple columns. To maximize the vertical utilization of the page:
+	1.	Increase the amount of content within each column (e.g., adding more sections or equations).
+	2.	Adjust the number of columns in the \begin{multicols}{n} command to fit the amount of content better (e.g., reduce n from 6 to 4 if there is less information).
+
+As long as there is enough content, the page will be rendered normally, filling both horizontally and vertically as intended.
+
+![Example of content layout with sufficient text, filling columns both vertically and horizontally.](sufficient_content_layout.png){fig-align="center" fig-caption=""}
+
 ---
 ## Conclusion
 
-This tutorial has provided an introduction to LaTeX and its applications for creating math-intensive documents, including cheatsheets. By exploring the basic structure of a .tex file, learning to write and render mathematical equations, and working with Overleaf for creating structured, multi-column documents, you now have the foundational skills to effectively use LaTeX for academic and professional purposes.
+Mastering LaTeX is an invaluable skill for MDS students and anyone working in academia or data science. Its ability to create professional documents with precise mathematical expressions, tables, and visualizations makes it a preferred tool for writing reports, research papers, and presentations.
 
-LaTeX is a powerful tool, and while it may seem complex at first, practice and experimentation will enhance your proficiency. Whether you’re crafting a detailed report, preparing a concise cheatsheet, or presenting mathematical concepts, LaTeX ensures your documents are both professional and precise.
+Through this tutorial, you have learned the basics of writing equations, formatting them for readability, and incorporating advanced features like matrices and alignment. By practicing these concepts and exploring additional features of LaTeX, you can elevate the quality of your academic and professional work.
 
-For further learning, explore additional resources such as Overleaf’s documentation, the LaTeX Wikibook, and community forums. Remember, the key to mastering LaTeX lies in consistent use and the willingness to learn from trial and error.
+Remember, LaTeX’s true power lies in its flexibility and scalability. Whether you’re creating a single-page cheatsheet or a comprehensive thesis, it provides the tools to present your ideas clearly and effectively. Explore, experiment, and make LaTeX your go-to tool for writing mathematical documents. 
 
 Happy LaTeXing!
