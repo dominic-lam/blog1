@@ -6,7 +6,7 @@ categories: [LaTeX, cheatsheets, document preparation, Overleaf, tutorials]
 image: "image.png"
 ---
 
-**LaTeX Tutorial for UBC MDS Students**
+**Mastering LaTeX for Math Equations and Cheatsheets: A Practical Guide for UBC MDS Students**
 
 ---
 
