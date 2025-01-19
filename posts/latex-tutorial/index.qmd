@@ -89,6 +89,8 @@ Whether you're using Jupyter Notebook or RMarkdown, these methods ensure your eq
   \begin{equation}
   x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
   \end{equation}
+  **Note that in RStudio, there is no need to wrap `\begin{equation} ... \end{equation}` with double dollar signs `($$ ... $$)`. RStudio automatically recognizes it as LaTeX code. Doing so will cause an error during `PDF` export.**  
+  
 - **Align Equations**:
   ```latex
   \begin{align}
